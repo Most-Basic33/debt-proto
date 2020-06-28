@@ -1,0 +1,56 @@
+[
+    {
+        "id": 0,
+        "name": "Bishop",
+        "phone": "480-259-6950",
+        "reason": "Borrowed 50 bucks",
+        "amount": 100,
+        "date": "6/26/20",
+        "time": "4:20:00"
+    },
+    {
+        "id": 1,
+        "name": "Tory",
+        "phone": "480-259-6950",
+        "reason": "Paid For Sex",
+        "amount": 33,
+        "date": "6/26/20",
+        "time": "4:20:00"
+    },
+    {
+        "id": 2,
+        "name": "Kelly",
+        "phone": "602-699-420",
+        "reason": "Dugs",
+        "amount": 75,
+        "date": "6/26/20",
+        "time": "4:20:00"
+    },
+    {
+        "id": 3,
+        "name": "Charlie",
+        "phone": "808-447-3333",
+        "reason": "Borrowed 50 bucks",
+        "amount": 60,
+        "date": "6/26/20",
+        "time": "4:20:00"
+    },
+    {
+        "id": 4,
+        "name": "Susan",
+        "phone": "408-666-3330",
+        "reason": "Food",
+        "amount": 75,
+        "date": "6/26/20",
+        "time": "4:20:00"
+    },
+    {
+        "id": 5,
+        "name": "Jessica",
+        "phone": "312-912-3243",
+        "reason": "Rent",
+        "amount": 800,
+        "date": "6/26/20",
+        "time": "4:20:00"
+    }
+]

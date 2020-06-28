@@ -1,21 +1,27 @@
- let debts = require('../../node_server_project/debts.json');
- let totalOwed = require('../totalOwed.json')
- //const e = require('express')
- const date1 = new Date()
- let log = console.log
 
+let debts = require(`./debts.json`)
+let totalOwed = require('../totalOwed.json')
 
+const date1 = new Date()
+let log = console.log()
+
+ 
 //log(date1.toLocaleString());
 //const time = date1;
 module.exports = {
 
     getDebtors: (req, res) => {
+        const data = []
+        data.push(...debts)
+//         
 
-        res.status(200).send(debts)
+           res.status(200).send(data)
+
     },
+   
     searchID: (req, res) => {
         let debtorsID = debts.find(e => e.id === +req.params.id)
-
+        const data = []
 
         res.status(200).send(debtorsID)
     },
@@ -66,18 +72,9 @@ module.exports = {
             total.push(debts[key].amount);
         }
         let ans = total.reduce((a, b) => a + b)
-        log(total,"last one")
-        log(ans)
-        totalOwed=[ans]
-         log(totalOwed,"totalowed")
+       
+        totalOwed = [ans]
+       
         res.status(200).send(totalOwed)
     }
 }
-// let total = []
-// for (key in debts) {
-//     total.push(debts[key].amount);
-// }
-// let ans = total.reduce((a, b) => a + b)
-// //log(total,"last one")
-// log(ans) 
-
