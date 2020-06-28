@@ -1,8 +1,8 @@
  let debts = require('../../node_server_project/debts.json');
-// let totalOwed = require('../totalOwed.json')
-// const e = require('express')
-// const date1 = new Date()
-// let log = console.log
+ let totalOwed = require('../totalOwed.json')
+ //const e = require('express')
+ const date1 = new Date()
+ let log = console.log
 
 
 //log(date1.toLocaleString());
@@ -66,10 +66,10 @@ module.exports = {
             total.push(debts[key].amount);
         }
         let ans = total.reduce((a, b) => a + b)
-        //log(total,"last one")
+        log(total,"last one")
         log(ans)
-        totalOwed.splice(0, 1, ans)
-        // log(totalOwed,"totalowed")
+        totalOwed=[ans]
+         log(totalOwed,"totalowed")
         res.status(200).send(totalOwed)
     }
 }

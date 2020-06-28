@@ -6,7 +6,8 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      urlDebts: ``
+      urlDebts: `http://localhost:6663/api/debtors`,
+      urlTotal: ``
     }
   }
   render(){
