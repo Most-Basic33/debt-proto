@@ -14,4 +14,4 @@ app.get('/api/debtor', ctrl.totalOwed)//get count of whats of owe
 //Possibly display the time on the card
 
 
-app.listen(port,() =>console.log('server working onport 6660') )
+app.listen(port,() =>console.log('server working onport 6660'))
