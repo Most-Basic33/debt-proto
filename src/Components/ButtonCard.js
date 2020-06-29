@@ -8,7 +8,7 @@ constructor(props){
     this.state={
         urlDebts: `/api/debtors/`,
         amount:0,
-        id:props.id,
+        id_:props.id,
         array:[]
     }
     
@@ -27,7 +27,10 @@ getDebtors = () => {
 
   }
 deleteDebtor = (id) => {
-    const { urlDebts } = this.state
+  
+    const { urlDebts,id_ } = this.state
+    id=id_ 
+    console.log(id)
     axios.delete(`${urlDebts}${id}`)
       .then(res => {
           console.log(res.data)

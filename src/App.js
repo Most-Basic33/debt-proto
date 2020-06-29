@@ -61,14 +61,15 @@ class App extends Component {
       .catch(err => console.log(err))
 
   }
-  deleteAllDebtors = () => {
-    const { urlDebts } = this.state
-    axios.delete(`${urlDebts}`)
-      .then(res => {
-        this.setState({ array: res.data })
-      })
-      .catch(err => console.log(err))
-  }
+  // deleteAllDebtors = () => {
+  //   const { urlDebts } = this.state
+  //   axios.delete(`${urlDebts}`)
+  //     .then(res => {
+  //       console.log(res.data)
+  //       this.setState({ array: res.data })
+  //     })
+  //     .catch(err => console.log(err))
+  // }
   updateAmount = (newAmount, id) => {
     const { urlDebts } = this.state
     axios.put(`${urlDebts}${id}`, { newAmount })
@@ -113,8 +114,8 @@ class App extends Component {
             date={ele.date}
           />
           <ButtonCard 
-            delete={this.deleteDebtor}
-            update={this.updateAmount}
+           //delete={this.deleteDebtor}
+            //update={this.updateAmount}
             id={ele.id}
           />
         </div>

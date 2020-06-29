@@ -14,23 +14,33 @@ class Form extends Component {
             urlDebts: `/api/debtors/`,
             urlTotal: `/api/debtor`,
             newPerson:{},
-            owed:0
+            owed:0,
+            
         }
     }
 addDebtors=()=>{
-    const {name,phone,reason,amount} = this.state
+    const {name,phone,reason,amount, urlDebts} = this.state
     const body = {
         name,
         phone,
         reason,
-        amount
+        amount,
+        
     }
-    axios.post(`${this.state.urlDebts}`,body)
+    axios.post(`${urlDebts}`,body)
     .then(res=>{
         this.setState({newPerson:res.data,name:'',reason:'',phone:'',amount:''})
     })
 }  
 
+deleteAllDebtors = () => {
+    const { urlDebts } = this.state
+    axios.delete(`${urlDebts}`)
+      .then(res => {
+        this.setState({ array: res.data })
+      })
+      .catch(err => console.log(err))
+    }
     totalOwed = () => {
         let num=0;
         const { urlTotal } = this.state
@@ -38,23 +48,26 @@ addDebtors=()=>{
           .then(res => {
             num = +res.data;
            // console.log(res.data)
-            this.setState({ amount: num })
+            this.setState({amount: num, })
           })
           .catch(err => console.log(err))
           console.log(this.state.amount)
       }
     handleChange = (e) => {
+        console.log(e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })
     }
+
     handleSubmit=(e)=>{
-        e.preventDefault();
+       // e.preventDefault();
            
         console.log(this.state.owed,"owed")
         console.log(this.state.newPerson)
     }
-    render() {
+
+render(){
 const num = this.state.amount
         return (
             <div>
@@ -89,12 +102,13 @@ const num = this.state.amount
                         onChange={this.handleChange}
                     />
                     <div className='money'>
+
                     {num}
                     </div>
                 </form>
                 <button onClick={() => this.totalOwed()}>$$Total</button>
-                <button>Erase All</button>
-                <button onClick={() =>this.addDebtors()} >New</button>
+                <button onClick={()=>this.deleteAllDebtors()}>Erase All</button>
+                <button onClick={() =>this.addDebtors()} >New Debtor</button>
             </div>
         )
     }
