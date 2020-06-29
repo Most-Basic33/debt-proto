@@ -4,6 +4,7 @@ import './App.css';
 import Card from './Components/Card'
 import Header from './Components/Header';
 import ButtonCard from './Components/ButtonCard'
+import Form from './Components/Form'
 
 class App extends Component {
   constructor(props) {
@@ -15,15 +16,15 @@ class App extends Component {
       array: [],//for the entire collection
       person: {},//to get on person at a time
       amount: 0,//to pull the total amount,
-     
+
 
     }
   }
-  
-  componentDidMount(){
+
+  componentDidMount() {
     this.getDebtors();
     this.setState({
-      person:this.state.array[0]
+      person: this.state.array[0]
     })
     console.log(this.state.person)
   }
@@ -32,9 +33,10 @@ class App extends Component {
     axios.post(`${urlDebts}`)
       .then(res => {
         this.setState({
-          array: res.dat }) 
+          array: res.dat
+        })
       })
-      .catch(err=>console.log(err))
+      .catch(err => console.log(err))
   }
   SearhID = (id) => {
     const { urlDebts } = this.state
@@ -88,7 +90,7 @@ class App extends Component {
     axios.get(`${urlDebts}`)
       .then(res => {
         this.setState({ array: res.data });
-       
+
       })
 
       .catch(err => console.log(err))
@@ -99,30 +101,30 @@ class App extends Component {
   // }
 
   render() {
-    
-    const {array, counter} = this.state
-   // console.log(array[0].name)
-//const outPut = (array).push.filter((e,i)=>e.id === counter)
-   
+
+    const { array, counter } = this.state
+    // console.log(array[0].name)
+    //const outPut = (array).push.filter((e,i)=>e.id === counter)
+
     const mapp = this.state.array.map((ele, i) => {
       return (
         <div key={i}>
-        <Card 
-          id={ele.id}
-          name={ele.name}
-          phone={ele.reason}
-           reason={ele.phone}
-           amount={ele.amount}
-          date={ele.date}  
-        />
-        <ButtonCard />
+          <Card
+            id={ele.id}
+            name={ele.name}
+            phone={ele.phone}
+            reason={ele.reason}
+            amount={ele.amount}
+            date={ele.date}
+          />
+          <ButtonCard />
         </div>
       )
     })
     return (
       <div className="main_app">
-      <Header />
-        Hello
+        <Header />
+        <Form />
         {mapp}
       </div>
     )
