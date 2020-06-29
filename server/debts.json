@@ -12,7 +12,7 @@
         "id": 1,
         "name": "Tory",
         "phone": "480-259-6950",
-        "reason": "Paid For Sex",
+        "reason": "Paid For Apple Computer",
         "amount": 33,
         "date": "6/26/20",
         "time": "4:20:00"
@@ -21,8 +21,8 @@
         "id": 2,
         "name": "Kelly",
         "phone": "602-699-420",
-        "reason": "Dugs",
-        "amount": 75,
+        "reason": "Cell Phone",
+        "amount": 750,
         "date": "6/26/20",
         "time": "4:20:00"
     },

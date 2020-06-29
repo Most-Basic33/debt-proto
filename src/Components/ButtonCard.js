@@ -9,7 +9,8 @@ constructor(props){
         urlDebts: `/api/debtors/`,
         amount:0,
         id_:props.id,
-        array:[]
+        array:[],
+        editMode:false
     }
     
 
@@ -23,7 +24,7 @@ getDebtors = () => {
 
       })
 
-      .catch(err => console.log(err))
+     //-- .catch(err => console.log(err))
 
   }
 deleteDebtor = (id) => {
@@ -39,11 +40,38 @@ deleteDebtor = (id) => {
       .catch(err => console.log(err))
 
   }
+  updateAmount = () => {
+  
+    const { urlDebts } = this.state
+    axios.put(`${urlDebts}${this.props.id}`, { amount:this.state.amount})
+      .then(res => {
+        console.log(res.data,"res.data")
+        // this.setState({ array: res.data })
+      })
+      .catch(err => console.log(err))
+  }
+  //toggle between true and falsle
+  toggleEdit=()=>{
+
+    this.setState({
+      editMode:!this.state.editMode
+    })
+  }
+  handleChange=(e)=>{
+    this.setState({
+    amount:+e.target.value
+    })
+  }
 render(){
 return(
 <div className='buttons'>
+{this.state.editMode?<div><input
+onChange={this.handleChange}
+type='number'
+ /><button onClick={this.updateAmount} >Submit</button>  </div>:null}
     <button onClick={()=>this.deleteDebtor(this.state.id)} >Delete</button>
-    <button>Update</button>
+    <button onClick={this.toggleEdit}>Update</button>
+
   
 </div>
      )

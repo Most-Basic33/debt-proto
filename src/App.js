@@ -70,16 +70,6 @@ class App extends Component {
   //     })
   //     .catch(err => console.log(err))
   // }
-  updateAmount = (newAmount, id) => {
-    const { urlDebts } = this.state
-    axios.put(`${urlDebts}${id}`, { newAmount })
-      .then(res => {
-        this.setState({ array: res.data })
-      })
-      .catch(err => console.log(err))
-
-
-  }
   
   getDebtors = () => {
     const { urlDebts } = this.state
@@ -92,10 +82,11 @@ class App extends Component {
       .catch(err => console.log(err))
 
   }
-  // componentDidMount(){
-  //   this.getDebtors();
-  // }
-
+  updateAmountArray=(axiosArray)=>{
+    this.setState({
+      array:axiosArray
+    })
+  }
   render() {
 
     const { array, counter } = this.state
@@ -115,7 +106,7 @@ class App extends Component {
           />
           <ButtonCard 
            //delete={this.deleteDebtor}
-            //update={this.updateAmount}
+            update={this.updateAmountArray}
             id={ele.id}
           />
         </div>
