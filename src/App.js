@@ -5,6 +5,7 @@ import Card from './Components/Card'
 import Header from './Components/Header';
 import ButtonCard from './Components/ButtonCard'
 import Form from './Components/Form'
+import Footer from './Components/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -125,6 +126,7 @@ class App extends Component {
         <Form 
                 />
         {mapp}
+        <Footer />
       </div>
     )
   }
