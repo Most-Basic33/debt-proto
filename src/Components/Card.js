@@ -2,7 +2,7 @@ import React from 'react';
 
 //it takes a while to get there so initally my methods don't work
 const Card = (props) => {
-    console.log(props.array)
+   
     let { id, name, phone, reason, amount, date } = props
     //  let {id, name, }=props.array
 

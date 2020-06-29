@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ButtonForm.css'
-import Button from './ButtonCard';
+
+import axios from 'axios'
 
 class Form extends Component {
     constructor(props) {
@@ -9,18 +10,55 @@ class Form extends Component {
             name: '',
             phone: '',
             reason: '',
-            amount: 0
+            amount: 0,
+            urlDebts: `/api/debtors/`,
+            urlTotal: `/api/debtor`,
+            newPerson:{},
+            owed:0
         }
     }
+addDebtors=()=>{
+    const {name,phone,reason,amount} = this.state
+    const body = {
+        name,
+        phone,
+        reason,
+        amount
+    }
+    axios.post(`${this.state.urlDebts}`,body)
+    .then(res=>{
+        this.setState({newPerson:res.data,name:'',reason:'',phone:'',amount:''})
+    })
+}  
+
+    totalOwed = () => {
+        let num=0;
+        const { urlTotal } = this.state
+        axios.get(`${urlTotal}`)
+          .then(res => {
+            num = +res.data;
+           // console.log(res.data)
+            this.setState({ amount: num })
+          })
+          .catch(err => console.log(err))
+          console.log(this.state.amount)
+      }
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
+    handleSubmit=(e)=>{
+        e.preventDefault();
+           
+        console.log(this.state.owed,"owed")
+        console.log(this.state.newPerson)
+    }
     render() {
+const num = this.state.amount
         return (
             <div>
-                <form >
+                <form onSubmit={this.handleSubmit}>
                     <input
                         type='text'
                         placeholder='Name'
@@ -47,13 +85,16 @@ class Form extends Component {
                         type='number'
                         placeholder='Amount'
                         name='amount'
-                        value={this.state.value}
+                        value={this.state.amount}
                         onChange={this.handleChange}
                     />
+                    <div className='money'>
+                    {num}
+                    </div>
                 </form>
-                <button>$$Total</button>
+                <button onClick={() => this.totalOwed()}>$$Total</button>
                 <button>Erase All</button>
-                <button>New</button>
+                <button onClick={() =>this.addDebtors()} >New</button>
             </div>
         )
     }

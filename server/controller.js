@@ -5,8 +5,7 @@ let totalOwed = require('../totalOwed.json')
 const date1 = new Date()
 let log = console.log()
 
- 
-//log(date1.toLocaleString());
+ //log(date1.toLocaleString());
 //const time = date1;
 module.exports = {
 
@@ -31,7 +30,7 @@ module.exports = {
             name: req.body.name,
             phone: req.body.phone,
             reason: req.body.reason,
-            amount: req.body.amount,
+            amount: +req.body.amount,
             date: date1,
 
         }

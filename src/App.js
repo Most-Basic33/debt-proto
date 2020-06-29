@@ -20,14 +20,18 @@ class App extends Component {
 
     }
   }
-
+  componentDidUpdate(){
+    this.getDebtors()
+}
   componentDidMount() {
     this.getDebtors();
+ 
     this.setState({
-      person: this.state.array[0]
+      person: this.state.array[0],
     })
-    console.log(this.state.person)
+   
   }
+  
   addDebtors = () => {
     const { urlDebts } = this.state
     axios.post(`${urlDebts}`)
@@ -74,17 +78,7 @@ class App extends Component {
 
 
   }
-  totalOwed = () => {
-    let num;
-    const { urlTotal } = this.state
-    axios.get(`${urlTotal}`)
-      .then(res => {
-        num = res.data;
-        this.setState({ amount: num })
-      })
-      .catch(err => console.log(err))
-  }
-  //add this to componentDIdMouny later
+  
   getDebtors = () => {
     const { urlDebts } = this.state
     axios.get(`${urlDebts}`)
@@ -117,14 +111,19 @@ class App extends Component {
             amount={ele.amount}
             date={ele.date}
           />
-          <ButtonCard />
+          <ButtonCard 
+            delete={this.deleteDebtor}
+            update={this.updateAmount}
+            id={ele.id}
+          />
         </div>
       )
     })
     return (
       <div className="main_app">
         <Header />
-        <Form />
+        <Form 
+                />
         {mapp}
       </div>
     )
